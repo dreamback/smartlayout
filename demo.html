@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Document</title>
+	<script src="libs/jquery.js"></script>
+<style>
+	#data-container{overflow:hidden;height:0;}
+	*{padding:0;margin:0;}
+	ul{list-style:none;}
+	img{vertical-align:top;}
+	html,body{height:100%;width:100%;}
+
+	.slider-wrap{width:100%;height:100%;position:relative;overflow:hidden;}
+	.slider-item{width:100%;height:100%;position:absolute;top:0;left:100%;}
+	.slider-content{width:1000px;height:100%;margin-left:auto;margin-right:auto;background: #eee;}
+	.prev-slider-btn,.next-slider-btn{position:fixed;width:30px;height:50px;background:#333;display:block;top:50%;margin-top:-25px;
+		-webkit-transition:all .3s linear;
+		-moz-transition:all .3s linear;
+		-ms-transition:all .3s linear;
+		transition:all .3s linear;
+	}
+	.prev-slider-btn{left:-30px;border-top-right-radius:5px;border-bottom-right-radius:5px;}
+	.next-slider-btn{right:0;border-top-left-radius: 5px;border-bottom-left-radius: 5px;}
+	/**
+	 * 栅格 
+	 * 235*4 = 940 
+	 * (1000-940)/8 = 10;
+	 */
+	.col-item-1{width:235px;float:left;_display:inline;margin-left:7.5px;margin-right:7.5px;}
+	.col-1{width:235px;margin-bottom:15px;}
+</style>
+</head>
+<body>
+<div id="data-container">
+	<div class="col-1"><img src="images/test/1.jpg" width="235" height="225"  /></div>
+	<div class="col-1"><img src="images/test/2.jpg" width="235" height="156"  /></div>
+	<div class="col-1"><img src="images/test/3.jpg" width="235" height="235"  /></div>
+	<div class="col-1"><img src="images/test/4.jpg" width="235" height="166"  /></div>
+	<div class="col-1"><img src="images/test/5.jpg" width="235" height="156"  /></div>
+	<div class="col-1"><img src="images/test/6.jpg" width="235" height="148"  /></div>
+	<div class="col-1"><img src="images/test/7.jpg" width="235" height="209"  /></div>
+	<div class="col-1"><img src="images/test/8.jpg" width="235" height="158"  /></div>
+	<div class="col-1"><img src="images/test/9.jpg" width="235" height="350"  /></div>
+	<div class="col-1"><img src="images/test/10.jpg" width="235" height="313" /></div>
+	<div class="col-1"><img src="images/test/11.jpg" width="235" height="274" /></div>
+	<div class="col-1"><img src="images/test/12.jpg" width="235" height="156" /></div>
+	<div class="col-1"><img src="images/test/13.jpg" width="235" height="352" /></div>
+	<div class="col-1"><img src="images/test/14.jpg" width="235" height="352" /></div>
+<div class="col-1"><img src="images/test/15.jpg" width="235" height="183" /></div>
+<div class="col-1"><img src="images/test/16.jpg" width="235" height="209" /></div>
+<div class="col-1"><img src="images/test/17.jpg" width="235" height="313" /></div>
+<div class="col-1"><img src="images/test/18.jpg" width="235" height="242" /></div>
+<div class="col-1"><img src="images/test/19.jpg" width="235" height="335" /></div>
+<div class="col-1"><img src="images/test/20.jpg" width="235" height="156" /></div>
+<div class="col-1"><img src="images/test/21.jpg" width="235" height="201" /></div>
+<div class="col-1"><img src="images/test/22.jpg" width="235" height="232" /></div>
+<div class="col-1"><img src="images/test/23.jpg" width="235" height="249" /></div>
+<div class="col-1"><img src="images/test/24.jpg" width="235" height="128" /></div>
+<div class="col-1"><img src="images/test/25.jpg" width="235" height="352" /></div>
+<div class="col-1"><img src="images/test/26.jpg" width="235" height="294" /></div>
+<div class="col-1"><img src="images/test/27.jpg" width="235" height="335" /></div>
+<div class="col-1"><img src="images/test/28.jpg" width="235" height="296" /></div>
+<div class="col-1"><img src="images/test/29.jpg" width="235" height="313" /></div>
+<div class="col-1"><img src="images/test/30.jpg" width="235" height="325" /></div>
+<div class="col-1"><img src="images/test/31.jpg" width="235" height="159" /></div>
+<div class="col-1"><img src="images/test/32.jpg" width="235" height="313" /></div>
+<div class="col-1"><img src="images/test/33.jpg" width="235" height="156" /></div>
+<div class="col-1"><img src="images/test/34.jpg" width="235" height="352" /></div>
+</div>
+<div class="slider-wrap">
+	<div class="slider-item" style="left:0%;">
+		<div class="slider-content" style="text-align:center;">
+<p style="padding-top:120px;font-size:18px;">后面的sliders，会跟随浏览器大小而“智能”填充内容。sliders的个数也相应变化。<br />
+	如果图片大小不能预先知道，页面的初始化很慢。(这里没有做图片预加载，你懂的)<br />
+	所以这里的图片都设置了width,hegiht<br />
+	这里尽量避免了低效的算法（不用递归，和节点重复利用）
+			</p></div>		
+	</div>
+	<div class="slider-item">
+		<div class="slider-content">
+			
+		</div>		
+	</div>
+</div>
+
+<a href="javascript:void(0);" class="prev-slider-btn"></a>
+<a href="javascript:void(0);" class="next-slider-btn"></a>
+
+<script>
+function SmartLayout(options){
+	this.wrap = options.wrap;
+	this.data = options.data;
+	this.colWidth = options.colWidth;
+	this.blankWidth = options.blankWidth;
+
+	this.size = this.data.size();
+	this.item = $('.slider-item').toArray();
+	this.content = $('.slider-content').toArray();
+	this.col = [];
+	this.pageslider = null;
+	this.limit = {};
+
+	this.init();
+};
+SmartLayout.prototype = {
+	init: function(){
+		this.cache();
+		this.draw();
+		this.events();
+	},
+	cache: function(){
+		this.data.each(function(){
+			$(this).data('size',{
+				height: $(this).height(),
+				width: $(this).width()
+			});
+		});
+		this.data = this.data.clone(true,true);
+	},
+	initDraw: function(){
+		var item = this.createItem(0),
+			content = this.createContent(item,0),
+			col = this.createCol(content, this.data.eq(0).data('size').width/this.colWidth),
+			data,
+			dataSize;
+			this.limit = this.getLimit();
+
+			for(var i = 0 , curCol = 1, hasHeight = 0 ; i < this.size ; i++){
+				data = this.data.eq(i);
+				dataSize = data.data('size');
+				if(i == 0 || hasHeight == 0 || this.limit.height > dataSize.height+hasHeight){
+					hasHeight += dataSize.height+this.blankWidth;
+				}else if(curCol < this.limit.col){
+					++curCol;
+					col = this.createCol(content, dataSize.width/this.colWidth);
+					hasHeight = dataSize.height+this.blankWidth;
+				}else{
+					item = this.createItem();
+					content = this.createContent(item);
+					col = this.createCol(content, dataSize.width/this.colWidth);
+					hasHeight = data.data('size').height+this.blankWidth;
+					curCol = 1;
+				}
+				$(col).append( data );
+			};
+			this.pageslider = PageSlider({
+				slides: $('.slider-item'),
+				prev: $('.prev-slider-btn'),
+				next: $('.next-slider-btn')
+			});
+	},
+	draw: function(){
+		if(this.item.length == 2){
+			this.initDraw();
+			return;
+		}
+			var item     = this.item[1],
+			content      = this.content[1],
+			col          = this.col[0],
+			itemLen      = this.item.length,
+			colLen       = this.col.length,
+			curItemIndex = 1,
+			curColIndex  = 0,
+			hasHeight    = 0,
+			curCol       = 0,
+			data,
+			dataSize;
+		for(var i = 0 ; i < this.size ; i++){
+			data = this.data.eq(i);
+			dataSize = data.data('size');
+			if(i == 0 || hasHeight == 0 || this.limit.height > dataSize.height+hasHeight){
+				hasHeight += dataSize.height+this.blankWidth;
+			}else if(++curCol < this.limit.col){
+				if(++curColIndex < colLen){
+					col = this.col[curColIndex];
+				}else{
+					col = this.createCol(content, dataSize.width/this.colWidth);
+					// --curColIndex;
+				}
+				hasHeight = dataSize.height+this.blankWidth;
+			}else{
+				if(++curItemIndex < itemLen){
+					item = this.item[curItemIndex];
+					content = this.content[curItemIndex];
+				}else{
+					item = this.createItem();
+					content = this.createContent(item);
+					// --curItemIndex;
+				}
+				if(++curColIndex < colLen){
+					col = this.col[curColIndex];
+				}else{
+					col = this.createCol(content, dataSize.width/this.colWidth);
+					// --curColIndex;
+				}
+				hasHeight = dataSize.height+this.blankWidth;
+				curCol = 0;
+			}
+			$(col).append( data );
+		};
+		this.pageslider.size = curItemIndex+1;
+		this.pageslider.slides = $(this.item.slice(0, this.pageslider.size));
+		console.log(this.pageslider.size+'-item');
+		if(this.pageslider.curIndex>curItemIndex){//高度变大
+			$(this.item).css({left:'-100%'}).eq(curItemIndex).css({left:'0%'});
+			this.pageslider.next.css({right:'-50px'});
+			this.pageslider.curIndex = curItemIndex;
+			this.pageslider.nextIndex = curItemIndex;		
+		}else{//高度变小的情况
+			this.pageslider.next.css({right:0});
+			// this.pageslider.curIndex = curItemIndex-1;
+			// this.pageslider.nextIndex = curItemIndex-1;			
+			// $('.slider-item:gt('+(curItemIndex+2)+')').css({left:'100%'});
+			// this.pageslider.slides.eq(this.pageslider.curIndex).css({left:'0%'});
+			$(this.item.slice(this.pageslider.curIndex+1)).css({left:'100%'});
+		}
+
+	},	
+	createItem: function(type){
+		if(type===0)return this.item[1];
+		var element = document.createElement('div');
+			$(element).addClass('slider-item');
+			this.item.push(element);
+			this.wrap.append(element);
+			return element;
+	},
+	createContent: function(item, type){
+		if(type===0)return this.content[1];
+		var element = document.createElement('div');
+			$(element).addClass('slider-content');
+			this.content.push(element);
+			$(item).append(element);
+			return element;
+	},
+	createCol: function(content, size){
+		var element = document.createElement('div');
+			$(element).addClass('col-item-'+size);
+			this.col.push(element);
+			$(content).append(element);
+			return element;
+	},
+	getLimit: function(){
+		var width = $(this.content[0]).width(),
+			height = this.wrap.height();
+		return {
+			col: Math.floor(width/(this.colWidth+this.blankWidth)),
+			height: height
+		}
+	},
+	events: function(){
+		var timeout = null,
+			that = this,
+			time = 0;
+		$(window).bind('resize', function(){
+			timeout && clearTimeout(timeout);
+			timeout = setTimeout(function(){
+				var limit = that.getLimit();
+				if(limit.height != that.limit.height || limit.col != that.limit.col){
+					that.limit = limit;
+					that.draw();
+				}
+			}, 1000);
+		});
+	}
+};
+var sm = new SmartLayout({
+	wrap: $('.slider-wrap'),
+	data: $('#data-container').children(),
+	blankWidth: 15,
+	colWidth: 235
+});
+
+
+
+function PageSlider(options){
+		var play = {
+				init: function(options){
+					this.slides = $(options.slides);
+					this.prev   = $(options.prev);
+					this.next   = $(options.next);
+					this.speed  = options.speed || 750;
+					this.curIndex  = 0;
+					this.nextIndex = 0;
+					this.size = this.slides.size();
+					this.ing = false;
+					this.events();
+					return this;
+				},
+				play: function(direction){
+					var that = this;
+					this.ing = true;console.log(this.curIndex + '--' + this.nextIndex)
+					this.slides.eq(this.curIndex).animate({
+						left:direction?'-100%':'100%'
+					}, this.speed, function(){
+						that.ing = false;
+					});
+					this.slides.eq(this.nextIndex).animate({
+						left:'0%'
+					}, this.speed, function(){
+						that.curIndex = that.nextIndex;
+						that.ing = false;
+					});
+					
+				},
+				prevPlay: function(){
+					if(this.ing)return;
+					if(--this.nextIndex < 0){
+						this.nextIndex++;
+						return;
+					}
+					if(this.nextIndex == 0)this.prev.addClass('hide').css('left','-50px');
+					this.next.removeClass('hide').css('right',0);
+					this.play();				
+				},
+				nextPlay: function(){
+					if(this.ing)return;
+					if(++this.nextIndex > this.size - 1){
+						this.nextIndex--;
+						return;
+					}
+					if(this.nextIndex == this.size-1)this.next.addClass('hide').css('right','-50px');
+					this.prev.removeClass('hide').css('left',0);
+					this.play(1);
+				},
+				events: function(){
+					var that = this;
+					this.prev.bind('click', function(){
+						that.prevPlay();
+					});
+					this.next.bind('click', function(){
+						that.nextPlay();
+					});
+				}
+		};
+		return play.init(options);
+	};
+
+</script>
+</body>
+</html>
