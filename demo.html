@@ -209,10 +209,6 @@ SmartLayout.prototype = {
 			this.pageslider.nextIndex = curItemIndex;		
 		}else{//高度变小的情况
 			this.pageslider.next.css({right:0});
-			// this.pageslider.curIndex = curItemIndex-1;
-			// this.pageslider.nextIndex = curItemIndex-1;			
-			// $('.slider-item:gt('+(curItemIndex+2)+')').css({left:'100%'});
-			// this.pageslider.slides.eq(this.pageslider.curIndex).css({left:'0%'});
 			$(this.item.slice(this.pageslider.curIndex+1)).css({left:'100%'});
 		}
 
@@ -270,8 +266,6 @@ var sm = new SmartLayout({
 	blankWidth: 15,
 	colWidth: 235
 });
-
-
 
 function PageSlider(options){
 		var play = {
